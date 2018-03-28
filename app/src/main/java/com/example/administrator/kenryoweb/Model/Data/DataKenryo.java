@@ -11,16 +11,13 @@ import java.util.ArrayList;
 public class DataKenryo extends Data {
     //工管番号で取得する分
     public String KOKBAN = "";
-    public String SM21S_DTKSHIN = "";
-    public String MD01_LOTBAN = "";
-    public String MD01_SFCD = "";
-    public String MM03_CBNCOD = "";
-    public String MM03_ZAINMK = "";
+    public String ZAINMK = "";
+    public String SET = "";
+    public String MES = "";
+    public String DIF = "";
 
     //缶タグ情報（缶数分）
     public ArrayList<String> PC01_CANNO = new ArrayList<String>();
-    public ArrayList<String> PC01_KOKBAN = new ArrayList<String>();
-    public ArrayList<String> MD01X_LOTBAN = new ArrayList<String>();
 
     //缶タグスキャン済みチェック
     public boolean isThisCanTagScanned(String canno) {
@@ -35,6 +32,14 @@ public class DataKenryo extends Data {
     //缶タグが最大数スキャンされたかどうかチェック
     public boolean isCanTagMaxCount() {
         if (PC01_CANNO.size() >= Constants.CNT_CAN_MAX) {
+            return true;
+        }
+        return false;
+    }
+
+    //缶タグが一つかどうかチェック
+    public boolean isCanTagOnlyOne() {
+        if (PC01_CANNO.size() == 1) {
             return true;
         }
         return false;

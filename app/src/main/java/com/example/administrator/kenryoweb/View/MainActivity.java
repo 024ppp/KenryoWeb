@@ -3,11 +3,10 @@ package com.example.administrator.kenryoweb.View;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -46,11 +45,8 @@ public class MainActivity extends AppCompatActivity {
         vib.vibrate(Constants.VIB_READ, -1);
         //タグテキスト抽出
         String tag = this.nfcTags.getStringInTag(intent);
-
-        if (!TextUtils.isEmpty(tag)) {
-            //缶タグ追加処理
-//            util.sendCheckCanTagRequest(tag);
-        }
+        //缶タグ追加処理
+        util.addCantag(dataKenryo, tag);
     }
 
     //DataのGetter/Setter

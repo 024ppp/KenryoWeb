@@ -11,6 +11,7 @@
     <string name="measure">measure</string>
     <string name="dif">dif</string>
 
+    <string name="gram">g</string>
     <string name="clear">Clear</string>
     <string name="upd">Upd</string>
 </resources>

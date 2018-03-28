@@ -3,6 +3,7 @@ package com.example.administrator.kenryoweb.Util;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.administrator.kenryoweb.AsyncTask.AbstractAsyncTask;
 import com.example.administrator.kenryoweb.AsyncTask.GetKokanInfoTask;
+import com.example.administrator.kenryoweb.AsyncTask.GetMeasuringValueTask;
 import com.example.administrator.kenryoweb.AsyncTask.UpdateProcessTask;
 import com.example.administrator.kenryoweb.Model.Data.Data;
 import com.example.administrator.kenryoweb.Model.Data.DataKenryo;
@@ -29,6 +31,8 @@ public class Util {
     private MainActivity activity;
     private TextView msg_text;
     private String ip;
+    private Handler handler;
+    private Runnable runnable;
 
     public Util(MainActivity activity) {
         this.activity = activity;
@@ -59,15 +63,15 @@ public class Util {
     }
 
     //リクエスト先URI作成
-    public String createURI(String act) {
+    private String createURI(String act) {
         String uri = ip;
 
         switch (act) {
             case "GET":
                 uri += Constants.URI_GET;
                 break;
-            case "CHECK":
-                uri += Constants.URI_CHECK;
+            case "MES":
+                uri += Constants.URI_MES;
                 break;
             case "POST":
                 uri += Constants.URI_POST;
@@ -161,10 +165,32 @@ public class Util {
         }
     }
 
-    //リクエスト送信可能かチェック
-    private boolean canSendRequest(DataKenryo dataKenryo, String tag) {
+    //缶タグ追加処理
+    public void addCantag(DataKenryo dataKenryo, String tag) {
+        if (canAddCantag(dataKenryo, tag)) {
+            dataKenryo.PC01_CANNO.add(tag);
+            //todo 必要？テストして確認
+            activity.setDataKenryo(dataKenryo);
+            //メッセージ表示
+            showMessageAfterTagScan(dataKenryo);
+
+            //1つ目の缶タグ取得後に、計量値定期取得を開始する
+            if (dataKenryo.isCanTagOnlyOne()) {
+                startGetMeasuringValueRegularly();
+            }
+        }
+    }
+
+    //缶タグ追加可能かチェック
+    private boolean canAddCantag(DataKenryo dataKenryo, String tag) {
         //工管番号リード以降でないと処理できない
         if (dataKenryo == null) {
+            return false;
+        }
+
+        //空チェック
+        if (TextUtils.isEmpty(tag)) {
+            showMessage(Constants.MSG_TAG_EMPTY);
             return false;
         }
 
@@ -181,6 +207,64 @@ public class Util {
             return false;
         }
         return true;
+    }
+
+    //缶タグスキャン後のメッセージ表示
+    //Todo 缶数が固定値かどうか確認。↓は固定値を想定。もしくは、検量時の設定値に対するアナウンスなしならこれで良い
+    private void showMessageAfterTagScan(DataKenryo dataKenryo) {
+        if (dataKenryo.isCanTagMaxCount()) {
+            //最大数スキャン済み
+            showMessage(Constants.MSG_CAN_MAX);
+        }
+        else {
+            //まだいけるとき
+            showMessage(Constants.MSG_CAN_NEXT);
+        }
+    }
+
+    //todo 成功するんやろか
+    //計量値定期取得を開始
+    private void startGetMeasuringValueRegularly() {
+        this.handler = new Handler();
+        this.runnable = new Runnable() {
+            @Override
+            public void run() {
+                //計量値取得タスク開始
+                String urlStr = createURI("MES");
+                GetMeasuringValueTask task = new GetMeasuringValueTask(activity, urlStr, "GET");
+                task.execute();
+                //定期実行の間隔を指定
+                handler.postDelayed(this, Constants.INTERVAL_MES);
+            }
+        };
+        handler.post(runnable);
+    }
+
+    //定期取得停止
+    public void stopGetMeasuringValue() {
+        handler.removeCallbacks(runnable);
+    }
+
+    //取得した計量値を表示、設定値での判定を行う
+    public void checkMeasuringValue(String info) {
+        DataKenryo dataKenryo = activity.getDataKenryo();
+        double min = Double.parseDouble(dataKenryo.SET) * 0.9;
+        double max = Double.parseDouble(dataKenryo.SET) * 1.1;
+        double value = Double.valueOf(info);
+
+        //計量値を判定。よければ登録ボタン有効化
+//        if (min < value && value < max) {
+//            txtKeiryo.setBackground(ContextCompat.getDrawable(this, R.drawable.ok));
+//        }
+//        else if (min > value) {
+//            txtKeiryo.setBackground(ContextCompat.getDrawable(this, R.drawable.low));
+//            btnUpd.setEnabled(false);
+//        }
+//        else if (value > max) {
+//            txtKeiryo.setBackground(ContextCompat.getDrawable(this, R.drawable.high));
+//            btnUpd.setEnabled(false);
+//        }
+//        txtKeiryo.setText(info);
     }
 
     //キャンセル後にProgressDialogが消えないため、不使用

@@ -19,22 +19,21 @@ public final class Init {
         ido_text.setFocusableInTouchMode(true);
         ido_text.setFocusable(true);
         ido_text.requestFocus();
-
-        EditText[] arr_edittext = new EditText[] {ido_text
-                                                , activity.findViewById(R.id.zainmk_text)
-                                                , activity.findViewById(R.id.set_text)
-                                                , activity.findViewById(R.id.mes_text)
-                                                , activity.findViewById(R.id.dif_text)};
-        for (EditText e : arr_edittext) { e.setText(""); }
+        ido_text.setText("");
 
         //TextView
-        TextView[] arr_textview = new TextView[] {activity.findViewById(R.id.c1)
+        TextView[] arr_textview = new TextView[] {activity.findViewById(R.id.zainmk_text)
+                                                , activity.findViewById(R.id.set_text)
+                                                , activity.findViewById(R.id.mes_text)
+                                                , activity.findViewById(R.id.dif_text)
+                                                , activity.findViewById(R.id.c1)
                                                 , activity.findViewById(R.id.c2)
                                                 , activity.findViewById(R.id.c3)
                                                 , activity.findViewById(R.id.c4)
                                                 , activity.findViewById(R.id.c5)
                                                 , activity.findViewById(R.id.c6)};
         for (TextView t : arr_textview) { t.setText(""); }
+
         //msg
         TextView msg_text = activity.findViewById(R.id.msg_text);
         msg_text.setText(Constants.MSG_STR);
