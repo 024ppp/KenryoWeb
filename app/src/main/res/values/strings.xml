@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">KenryoWeb</string>
+    <string name="action_settings">設定</string>
+    <string name="action_finish">終了</string>
+
+    <string name="ido">Ido</string>
+    <string name="zainmk">Zainmk</string>
+    <string name="no">No.</string>
+    <string name="cantag">Cantag</string>
+    <string name="set">set</string>
+    <string name="measure">measure</string>
+    <string name="dif">dif</string>
+
+    <string name="clear">Clear</string>
+    <string name="upd">Upd</string>
+</resources>
