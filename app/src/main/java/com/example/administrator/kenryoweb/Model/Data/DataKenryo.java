@@ -11,13 +11,14 @@ import java.util.ArrayList;
 public class DataKenryo extends Data {
     //工管番号で取得する分
     public String KOKBAN = "";
-    public String ZAINMK = "";
-    public String SET = "";
+    public String MD01_ZAINMK = "";
+    public String MD03_SYJRY = "";
     public String MES = "";
     public String DIF = "";
 
     //缶タグ情報（缶数分）
     public ArrayList<String> PC01_CANNO = new ArrayList<String>();
+    public ArrayList<String> PC01_CANKBN = new ArrayList<String>();
 
     //缶タグスキャン済みチェック
     public boolean isThisCanTagScanned(String canno) {

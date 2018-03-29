@@ -248,8 +248,8 @@ public class Util {
     //取得した計量値を表示、設定値での判定を行う
     public void checkMeasuringValue(String info) {
         DataKenryo dataKenryo = activity.getDataKenryo();
-        double min = Double.parseDouble(dataKenryo.SET) * 0.9;
-        double max = Double.parseDouble(dataKenryo.SET) * 1.1;
+        double min = Double.parseDouble(dataKenryo.MD03_SYJRY) * 0.9;
+        double max = Double.parseDouble(dataKenryo.MD03_SYJRY) * 1.1;
         double value = Double.valueOf(info);
 
         //計量値を判定。よければ登録ボタン有効化

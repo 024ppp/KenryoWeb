@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import com.example.administrator.kenryoweb.Display.Display;
 import com.example.administrator.kenryoweb.Display.MeasuringValueDisplay;
 import com.example.administrator.kenryoweb.Model.Data.DataKenryo;
-import com.example.administrator.kenryoweb.Model.Data.DataMeasuringValue;
+import com.example.administrator.kenryoweb.Model.Data.DataMeasure;
 import com.example.administrator.kenryoweb.View.MainActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -24,15 +24,15 @@ public class GetMeasuringValueTask extends AbstractAsyncTask {
         //受信したJsonデータを加工して、画面に反映させる
         try {
             ObjectMapper mapper = new ObjectMapper();
-            DataMeasuringValue dataMeasuringValue = mapper.readValue(result, DataMeasuringValue.class);
+            DataMeasure dataMeasure = mapper.readValue(result, DataMeasure.class);
 
             //todo スッキリさせる
             //計量値が取得できていれば、DataKenryoに追加する
-            if (TextUtils.isEmpty(dataMeasuringValue.MES)) {
+            if (TextUtils.isEmpty(dataMeasure.MES)) {
                 return;
             }
             DataKenryo d = activity.getDataKenryo();
-            d.MES = dataMeasuringValue.MES;
+            d.MES = dataMeasure.MES;
 
             //画面に反映する
             if (display.showData(d)) {

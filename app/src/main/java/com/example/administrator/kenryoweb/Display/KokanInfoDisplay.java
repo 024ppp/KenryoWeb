@@ -38,7 +38,7 @@ public class KokanInfoDisplay extends Display{
 
         ido_text.setText(data.KOKBAN);
         zainmk_text.setText(data.ZAINMK);
-        set_text.setText(data.SET);
+        set_text.setText(data.MD03_SYJRY);
         msg_text.setText(Constants.MSG_CAN_STR);
 
         ido_text.setFocusable(false);

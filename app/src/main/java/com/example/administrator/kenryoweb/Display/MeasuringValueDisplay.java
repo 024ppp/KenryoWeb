@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.example.administrator.kenryoweb.Model.Data.Data;
-import com.example.administrator.kenryoweb.Model.Data.DataMeasuringValue;
+import com.example.administrator.kenryoweb.Model.Data.DataMeasure;
 import com.example.administrator.kenryoweb.R;
 import com.example.administrator.kenryoweb.Util.Constants;
 
@@ -21,7 +21,7 @@ public class MeasuringValueDisplay extends Display {
 
     @Override
     public boolean showData(Data d) {
-        DataMeasuringValue data = (DataMeasuringValue) d;
+        DataMeasure data = (DataMeasure) d;
 
         if (!TextUtils.isEmpty(data.ErrMsg)) {
             msg_text.setText(data.ErrMsg);
