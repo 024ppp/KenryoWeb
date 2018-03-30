@@ -17,6 +17,7 @@ public final class Constants {
     public static final String MSG_TIMEOUT = "接続がタイムアウトしました。\n再試行してください。";
 
     public static final String URI_GET = "/WebAPI_Koyo_C/kenryo/get/";
+    public static final String URI_CAN = "/WebAPI_Koyo_C/kenryo/can/";
     public static final String URI_MES = "/WebAPI_Koyo_C/kenryo/mes";
     public static final String URI_POST = "/WebAPI_Koyo_C/api/kenryo";
 

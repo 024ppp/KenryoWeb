@@ -26,12 +26,17 @@ public abstract class AbstractAsyncTask extends AsyncTask<String, String, String
     private MainActivity activity;
     private String urlStr;
     private String requestMethod;
+    private boolean shouldShowDialog;
     ProgressDialog dialog;
 
-    public AbstractAsyncTask(MainActivity activity, String urlStr, String requestMethod) {
+    public AbstractAsyncTask(MainActivity activity
+                           , String urlStr
+                           , String requestMethod
+                           , boolean shouldShowDialog) {
         this.activity = activity;
         this.urlStr = urlStr;
         this.requestMethod = requestMethod;
+        this.shouldShowDialog = shouldShowDialog;
     }
 
     public abstract void applyDataToScreen(String result);
@@ -42,7 +47,9 @@ public abstract class AbstractAsyncTask extends AsyncTask<String, String, String
         dialog = new ProgressDialog(activity);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setMessage("サーバー問い合わせ中...");
-        dialog.show();
+        if (shouldShowDialog) {
+            dialog.show();
+        }
     }
 
     @Override
@@ -129,7 +136,9 @@ public abstract class AbstractAsyncTask extends AsyncTask<String, String, String
             applyDataToScreen(result);
         }
         finally {
-            dialog.dismiss();
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
         }
     }
 

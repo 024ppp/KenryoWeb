@@ -18,7 +18,7 @@ public class GetKokanInfoTask extends AbstractAsyncTask {
     private Display display;
 
     public GetKokanInfoTask(MainActivity activity, String urlStr, String requestMethod) {
-        super(activity, urlStr, requestMethod);
+        super(activity, urlStr, requestMethod, true);
         this.activity = activity;
         this.display = new KokanInfoDisplay(activity);
     }

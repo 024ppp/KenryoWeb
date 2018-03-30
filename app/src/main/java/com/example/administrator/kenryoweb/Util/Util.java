@@ -12,7 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.administrator.kenryoweb.AsyncTask.AbstractAsyncTask;
+import com.example.administrator.kenryoweb.AsyncTask.GetCantagInfoTask;
 import com.example.administrator.kenryoweb.AsyncTask.GetKokanInfoTask;
 import com.example.administrator.kenryoweb.AsyncTask.GetMeasuringValueTask;
 import com.example.administrator.kenryoweb.AsyncTask.UpdateProcessTask;
@@ -20,8 +20,6 @@ import com.example.administrator.kenryoweb.Model.Data.Data;
 import com.example.administrator.kenryoweb.Model.Data.DataKenryo;
 import com.example.administrator.kenryoweb.R;
 import com.example.administrator.kenryoweb.View.MainActivity;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Administrator on 2018/03/27.
@@ -31,6 +29,8 @@ public class Util {
     private MainActivity activity;
     private TextView msg_text;
     private String ip;
+
+    //計量値定期取得タスクにて使用
     private Handler handler;
     private Runnable runnable;
 
@@ -69,6 +69,9 @@ public class Util {
         switch (act) {
             case "GET":
                 uri += Constants.URI_GET;
+                break;
+            case "CAN":
+                uri += Constants.URI_CAN;
                 break;
             case "MES":
                 uri += Constants.URI_MES;
@@ -124,6 +127,8 @@ public class Util {
                             public void onClick(DialogInterface dialog, int which) {
                                 // OK button pressed
                                 Init.initPage(activity);
+                                //計量値自動取得を中止
+                                stopGetMeasuringValue();
                             }
                         })
                         .setNegativeButton("Cancel", null)
@@ -143,6 +148,9 @@ public class Util {
                             public void onClick(DialogInterface dialog, int which) {
                                 // OK button pressed
                                 sendUpdateRequest();
+                                //計量値自動取得を中止
+                                //todo 更新が失敗した時に再開させるべきか...不要な気がするので未着手
+                                stopGetMeasuringValue();
                             }
                         })
                         .setNegativeButton("Cancel", null)
@@ -167,18 +175,12 @@ public class Util {
 
     //缶タグ追加処理
     public void addCantag(DataKenryo dataKenryo, String tag) {
-        if (canAddCantag(dataKenryo, tag)) {
-            dataKenryo.PC01_CANNO.add(tag);
-            //todo 必要？テストして確認
-            activity.setDataKenryo(dataKenryo);
-            //メッセージ表示
-            showMessageAfterTagScan(dataKenryo);
-
-            //1つ目の缶タグ取得後に、計量値定期取得を開始する
-            if (dataKenryo.isCanTagOnlyOne()) {
-                startGetMeasuringValueRegularly();
-            }
+        //缶タグが追加可能かチェック
+        if (!canAddCantag(dataKenryo, tag)) {
+            return;
         }
+        //スキャンした缶タグの缶区分を取得
+        sendCanTagRequest(tag);
     }
 
     //缶タグ追加可能かチェック
@@ -209,22 +211,20 @@ public class Util {
         return true;
     }
 
-    //缶タグスキャン後のメッセージ表示
-    //Todo 缶数が固定値かどうか確認。↓は固定値を想定。もしくは、検量時の設定値に対するアナウンスなしならこれで良い
-    private void showMessageAfterTagScan(DataKenryo dataKenryo) {
-        if (dataKenryo.isCanTagMaxCount()) {
-            //最大数スキャン済み
-            showMessage(Constants.MSG_CAN_MAX);
+    //缶区分取得リクエスト送受信タスクを作成
+    private void sendCanTagRequest(String tag) {
+        try {
+            String q = "?can=" + tag;
+            String urlStr = createURI("CAN") + q;
+            GetCantagInfoTask task = new GetCantagInfoTask(activity, urlStr, "GET", this);
+            task.execute();
         }
-        else {
-            //まだいけるとき
-            showMessage(Constants.MSG_CAN_NEXT);
+        catch (Exception ex) {
         }
     }
 
-    //todo 成功するんやろか
     //計量値定期取得を開始
-    private void startGetMeasuringValueRegularly() {
+    public void startGetMeasuringValueRegularly() {
         this.handler = new Handler();
         this.runnable = new Runnable() {
             @Override
@@ -240,9 +240,12 @@ public class Util {
         handler.post(runnable);
     }
 
-    //定期取得停止
-    public void stopGetMeasuringValue() {
-        handler.removeCallbacks(runnable);
+    //定期取得停止（クリア、登録ボタン押下時に実行）
+    private void stopGetMeasuringValue() {
+        if (handler != null) {
+            handler.removeCallbacks(runnable);
+            handler = null;
+        }
     }
 
     //取得した計量値を表示、設定値での判定を行う
@@ -265,28 +268,5 @@ public class Util {
 //            btnUpd.setEnabled(false);
 //        }
 //        txtKeiryo.setText(info);
-    }
-
-    //キャンセル後にProgressDialogが消えないため、不使用
-    //APIリクエストのTimeout設定
-    private void setTimeout(final AbstractAsyncTask task) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    task.get(1000, TimeUnit.MICROSECONDS);
-                }
-                catch (Exception ex) {
-                    task.cancel(true);
-                    msg_text.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            msg_text.setText(Constants.MSG_TIMEOUT);
-                        }
-                    });
-                    ex.printStackTrace();
-                }
-            }
-        }).start();
     }
 }

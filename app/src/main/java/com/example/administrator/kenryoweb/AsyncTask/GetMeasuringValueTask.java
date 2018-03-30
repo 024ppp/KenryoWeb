@@ -14,7 +14,7 @@ public class GetMeasuringValueTask extends AbstractAsyncTask {
     private Display display;
 
     public GetMeasuringValueTask(MainActivity activity, String urlStr, String requestMethod) {
-        super(activity, urlStr, requestMethod);
+        super(activity, urlStr, requestMethod, false);
         this.activity = activity;
         this.display = new MeasuringValueDisplay(activity);
     }

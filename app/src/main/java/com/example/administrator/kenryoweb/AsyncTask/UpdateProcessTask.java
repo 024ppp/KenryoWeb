@@ -11,7 +11,7 @@ public class UpdateProcessTask extends AbstractAsyncTask {
     private MainActivity activity;
 
     public UpdateProcessTask(MainActivity activity, String urlStr, String requestMethod) {
-        super(activity, urlStr, requestMethod);
+        super(activity, urlStr, requestMethod, true);
         this.activity = activity;
     }
 
