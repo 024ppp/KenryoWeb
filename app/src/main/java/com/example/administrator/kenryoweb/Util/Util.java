@@ -31,6 +31,7 @@ public class Util {
     private String ip;
 
     //計量値定期取得タスクにて使用
+    private Util _util;
     private Handler handler;
     private Runnable runnable;
 
@@ -164,7 +165,7 @@ public class Util {
         DataKenryo dataKenryo = activity.getDataKenryo();
         try {
             String urlStr = createURI("POST");
-            UpdateProcessTask task = new UpdateProcessTask(activity, urlStr, "POST");
+            UpdateProcessTask task = new UpdateProcessTask(activity, urlStr, "POST", this);
             //送信データ作成
             String json = JsonConverter.toString(dataKenryo);
             task.execute(json);
@@ -225,13 +226,14 @@ public class Util {
 
     //計量値定期取得を開始
     public void startGetMeasuringValueRegularly() {
+        _util = this;   //todo ええんかこれ
         this.handler = new Handler();
         this.runnable = new Runnable() {
             @Override
             public void run() {
                 //計量値取得タスク開始
                 String urlStr = createURI("MES");
-                GetMeasuringValueTask task = new GetMeasuringValueTask(activity, urlStr, "GET");
+                GetMeasuringValueTask task = new GetMeasuringValueTask(activity, urlStr, "GET", _util);
                 task.execute();
                 //定期実行の間隔を指定
                 handler.postDelayed(this, Constants.INTERVAL_MES);

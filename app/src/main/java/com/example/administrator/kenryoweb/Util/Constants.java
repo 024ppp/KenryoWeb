@@ -14,14 +14,18 @@ public final class Constants {
     public static final String MSG_CAN_MAX = "最大数スキャン済みです。\n検量した後、登録してください。";
     public static final String MSG_CAN_SCANNED = "はスキャン済みです。";
     public static final String MSG_TAG_EMPTY = "タグテキストが空です。";
+    public static final String MSG_EMPTY = "レスポンスデータが空白です。";
     public static final String MSG_TIMEOUT = "接続がタイムアウトしました。\n再試行してください。";
+    public static final String MSG_SERVER_ERR = "サーバーとの通信が行われていません。";
 
     public static final String URI_GET = "/WebAPI_Koyo_C/kenryo/get/";
     public static final String URI_CAN = "/WebAPI_Koyo_C/kenryo/can/";
     public static final String URI_MES = "/WebAPI_Koyo_C/kenryo/mes";
     public static final String URI_POST = "/WebAPI_Koyo_C/api/kenryo";
 
+    public static final String STR_EMPTY = "TIMEOUT";
     public static final String STR_TIMEOUT = "TIMEOUT";
+    public static final String STR_SERVER_ERR = "SERVER_ERR";
 
     //long
     public static final long VIB_READ[] = {0, 200};
@@ -32,6 +36,11 @@ public final class Constants {
     public static final int TIMEOUT_MILLSEC = 5000;
     public static final int CNT_CAN_MAX = 6;
     public static final int SETTING = 8888;
+    public static final int WEIGHT_KBN_1 = 100;
+    public static final int WEIGHT_KBN_2 = 200;
+    public static final int WEIGHT_KBN_3 = 300;
+    public static final int WEIGHT_KBN_4 = 400;
+    public static final int WEIGHT_KBN_5 = 500;
 
     private Constants (){}
 }

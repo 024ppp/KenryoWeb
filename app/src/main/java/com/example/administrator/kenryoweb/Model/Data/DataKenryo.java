@@ -45,4 +45,13 @@ public class DataKenryo extends Data {
         }
         return false;
     }
+
+    //風袋重量を引いた値を算出する
+
+    //差分を計算する
+    public String calcDifference(DataKenryo data) {
+        String result = "0";
+        return result;
+    }
+
 }

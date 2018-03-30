@@ -28,8 +28,10 @@ public class MeasuringValueDisplay extends Display {
             msg_text.setText(data.ErrMsg);
             return false;
         }
-        //todo 風袋云々、差分を計算して表示
+
+        //計量値と差分を表示
         mes_text.setText(data.MES);
+        dif_text.setText(data.DIF);
         return true;
     }
 
@@ -37,4 +39,5 @@ public class MeasuringValueDisplay extends Display {
     public void showTimeoutMessage() {
         msg_text.setText(Constants.MSG_TIMEOUT);
     }
+
 }

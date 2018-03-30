@@ -55,7 +55,7 @@ public class CantagDisplay extends Display{
 
         //next msg
         if (data.isCanTagMaxCount()) {
-            msg_text.setText(Constants.MSG_CAN_FIN);
+            msg_text.setText(Constants.MSG_CAN_MAX);
         }
         else {
             msg_text.setText(Constants.MSG_CAN_NEXT);
