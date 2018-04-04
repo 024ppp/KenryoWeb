@@ -11,9 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.administrator.kenryoweb.R;
+import com.example.administrator.kenryoweb.Util.Constants;
 
 public class Setting extends Activity implements View.OnClickListener {
-    EditText txtIP;
+    EditText IP_text, cw1_text, cw2_text, cw3_text, cw4_text, cw5_text;
     Button btn;
     SharedPreferences prefs;
 
@@ -22,15 +23,25 @@ public class Setting extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);
 
-        txtIP = findViewById(R.id.txtIP);
+        prefs = getSharedPreferences("ConnectionData", Context.MODE_PRIVATE);
+
+        IP_text = findViewById(R.id.IP_text);
+        cw1_text = findViewById(R.id.cw1_text);
+        cw2_text = findViewById(R.id.cw2_text);
+        cw3_text = findViewById(R.id.cw3_text);
+        cw4_text = findViewById(R.id.cw4_text);
+        cw5_text = findViewById(R.id.cw5_text);
+
+        //表示
+        IP_text.setText(prefs.getString("ip", ""));
+        cw1_text.setText(String.valueOf(prefs.getInt("cw1", Constants.WEIGHT_KBN_1)));
+        cw2_text.setText(String.valueOf(prefs.getInt("cw2", Constants.WEIGHT_KBN_2)));
+        cw3_text.setText(String.valueOf(prefs.getInt("cw3", Constants.WEIGHT_KBN_3)));
+        cw4_text.setText(String.valueOf(prefs.getInt("cw4", Constants.WEIGHT_KBN_4)));
+        cw5_text.setText(String.valueOf(prefs.getInt("cw5", Constants.WEIGHT_KBN_5)));
+
         btn = findViewById(R.id.button);
         btn.setOnClickListener(this);
-
-        //接続先を取得
-        prefs = getSharedPreferences("ConnectionData", Context.MODE_PRIVATE);
-        String ip = prefs.getString("ip", "");
-
-        txtIP.setText(ip);
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -53,7 +64,14 @@ public class Setting extends Activity implements View.OnClickListener {
 
         //Setting
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("ip", txtIP.getText().toString());
+        editor.putString("ip", IP_text.getText().toString());
+        editor.putInt("cw1", Integer.parseInt(cw1_text.getText().toString()));
+        editor.putInt("cw2", Integer.parseInt(cw2_text.getText().toString()));
+        editor.putInt("cw3", Integer.parseInt(cw3_text.getText().toString()));
+        editor.putInt("cw4", Integer.parseInt(cw4_text.getText().toString()));
+        editor.putInt("cw5", Integer.parseInt(cw5_text.getText().toString()));
+
+        //反映
         editor.apply();
 
         // setResult() で bundle を載せた

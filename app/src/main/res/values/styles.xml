@@ -8,13 +8,34 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="style_frame">
-        <item name="android:background">@drawable/frame_style</item>
+    <!--項目名-->
+    <style name="style_title">
+        <item name="android:background">@drawable/frame_title</item>
         <item name="android:textSize">18sp</item>
+        <item name="android:padding">2dp</item>
     </style>
 
-    <style name="style_title">
+    <!--項目-->
+    <style name="style_item">
+        <item name="android:background">@drawable/frame_item</item>
         <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_item</item>
+        <item name="android:padding">2dp</item>
+    </style>
+
+    <!--項目（左寄せ）-->
+    <style name="style_item_left" parent="style_item">
+        <item name="android:gravity">left</item>
+    </style>
+
+    <!--項目（中央）-->
+    <style name="style_item_center" parent="style_item">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!--項目（右寄せ）-->
+    <style name="style_item_right" parent="style_item">
+        <item name="android:gravity">right</item>
     </style>
 
 </resources>

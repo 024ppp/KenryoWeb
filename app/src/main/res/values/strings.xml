@@ -1,15 +1,22 @@
 <resources>
-    <string name="app_name">KenryoWeb</string>
+    <string name="app_name">検量</string>
     <string name="action_settings">設定</string>
     <string name="action_finish">終了</string>
 
-    <string name="ido">Ido</string>
-    <string name="zainmk">Zainmk</string>
+    <string name="ido">移動票No.</string>
+    <string name="zainmk">配合粉</string>
     <string name="no">No.</string>
-    <string name="cantag">Cantag</string>
-    <string name="set">set</string>
-    <string name="measure">measure</string>
-    <string name="dif">dif</string>
+    <string name="cantag">缶タグ</string>
+    <string name="set">設定値</string>
+    <string name="measure">計量値</string>
+    <string name="dif">差分</string>
+    <!--<string name="ido">Ido</string>-->
+    <!--<string name="zainmk">Zainmk</string>-->
+    <!--<string name="no">No.</string>-->
+    <!--<string name="cantag">Cantag</string>-->
+    <!--<string name="set">set</string>-->
+    <!--<string name="measure">measure</string>-->
+    <!--<string name="dif">dif</string>-->
 
     <string name="gram">g</string>
     <string name="clear">Clear</string>

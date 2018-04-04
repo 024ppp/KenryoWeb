@@ -31,11 +31,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
-        style="@style/style_frame"
         android:id="@+id/ido_text"
-        android:layout_width="wrap_content"
+        style="@style/style_item_left"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -43,11 +43,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        style="@style/style_frame"
         android:id="@+id/zainmk_text"
+        style="@style/style_item_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="2dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -70,7 +70,7 @@
         android:id="@+id/v1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:gravity="center_vertical|center"
         android:text="1."
         android:textSize="18sp"
@@ -81,7 +81,7 @@
         android:id="@+id/v2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="2dp"
         android:gravity="center_vertical|center"
         android:text="2."
@@ -93,7 +93,7 @@
         android:id="@+id/v3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="2dp"
         android:gravity="center_vertical|center"
         android:text="3."
@@ -105,7 +105,7 @@
         android:id="@+id/v4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="2dp"
         android:gravity="center_vertical|center"
         android:text="4."
@@ -117,7 +117,7 @@
         android:id="@+id/v5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="2dp"
         android:gravity="center_vertical|center"
         android:text="5."
@@ -129,7 +129,7 @@
         android:id="@+id/v6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="2dp"
         android:gravity="center_vertical|center"
         android:text="6."
@@ -138,78 +138,72 @@
         app:layout_constraintTop_toBottomOf="@+id/v5" />
 
     <TextView
-        style="@style/style_frame"
+        style="@style/style_item_center"
         android:id="@+id/c1"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
         android:layout_marginStart="2dp"
-        android:gravity="center"
         app:layout_constraintBaseline_toBaselineOf="@+id/c"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.007"
         app:layout_constraintStart_toEndOf="@+id/v1" />
 
     <TextView
-        style="@style/style_frame"
+        style="@style/style_item_center"
         android:id="@+id/c2"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
         android:layout_marginStart="2dp"
-        android:gravity="center"
         app:layout_constraintBaseline_toBaselineOf="@+id/v2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.007"
         app:layout_constraintStart_toEndOf="@+id/v2" />
 
     <TextView
-        style="@style/style_frame"
+        style="@style/style_item_center"
         android:id="@+id/c3"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
         android:layout_marginStart="2dp"
-        android:gravity="center"
         app:layout_constraintBaseline_toBaselineOf="@+id/v3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.007"
         app:layout_constraintStart_toEndOf="@+id/v3" />
 
     <TextView
-        style="@style/style_frame"
+        style="@style/style_item_center"
         android:id="@+id/c4"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
         android:layout_marginStart="2dp"
-        android:gravity="center"
         app:layout_constraintBaseline_toBaselineOf="@+id/v4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.007"
         app:layout_constraintStart_toEndOf="@+id/v4" />
 
     <TextView
-        style="@style/style_frame"
+        style="@style/style_item_center"
         android:id="@+id/c5"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
         android:layout_marginStart="2dp"
-        android:gravity="center"
         app:layout_constraintBaseline_toBaselineOf="@+id/v5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.007"
         app:layout_constraintStart_toEndOf="@+id/v5" />
 
     <TextView
-        style="@style/style_frame"
+        style="@style/style_item_center"
         android:id="@+id/c6"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
         android:layout_marginStart="2dp"
-        android:gravity="center"
         app:layout_constraintBaseline_toBaselineOf="@+id/v6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.007"
@@ -221,7 +215,7 @@
         android:layout_height="1px"
         android:layout_marginEnd="2dp"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -264,11 +258,11 @@
 
     <TextView
         android:id="@+id/set_text"
-        style="@style/style_frame"
-        android:layout_width="100dp"
+        style="@style/style_item_right"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/textView2"
@@ -276,10 +270,10 @@
 
     <TextView
         android:id="@+id/mes_text"
-        style="@style/style_frame"
-        android:layout_width="100dp"
+        style="@style/style_item_right"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="2dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -288,10 +282,10 @@
 
     <TextView
         android:id="@+id/dif_text"
-        style="@style/style_frame"
-        android:layout_width="100dp"
+        style="@style/style_item_right"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="2dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -300,13 +294,13 @@
 
     <TextView
         android:id="@+id/textView6"
-        style="@style/style_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="2dp"
         android:gravity="center"
         android:text="@string/gram"
+        android:textSize="18sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/set_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -314,13 +308,13 @@
 
     <TextView
         android:id="@+id/textView7"
-        style="@style/style_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="2dp"
         android:gravity="center"
         android:text="@string/gram"
+        android:textSize="18sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/mes_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -328,13 +322,13 @@
 
     <TextView
         android:id="@+id/textView8"
-        style="@style/style_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="2dp"
         android:gravity="center"
         android:text="@string/gram"
+        android:textSize="18sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/dif_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -344,36 +338,36 @@
         android:id="@+id/clear_btn"
         android:layout_width="150dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:text="@string/clear"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/msg_text" />
 
     <Button
         android:id="@+id/upd_btn"
         android:layout_width="150dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="12dp"
         android:enabled="false"
         android:text="@string/upd"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/msg_text" />
 
     <TextView
         android:id="@+id/msg_text"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="84dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:background="@android:color/white"
         android:gravity="center_vertical"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dif_text" />
 
 </android.support.constraint.ConstraintLayout>

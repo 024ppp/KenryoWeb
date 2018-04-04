@@ -33,7 +33,7 @@ public final class Constants {
     public static final long INTERVAL_MES = 1000;
 
     //int
-    public static final int TIMEOUT_MILLSEC = 5000;
+    public static final int TIMEOUT_MILLSEC = 10000;
     public static final int CNT_CAN_MAX = 6;
     public static final int SETTING = 8888;
     public static final int WEIGHT_KBN_1 = 100;

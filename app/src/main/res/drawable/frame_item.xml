@@ -7,4 +7,7 @@
         android:width="0.5dp"
         android:color="#34465d" />
 
+    <!-- 背景色 -->
+    <solid android:color="@color/back_item"/>
+
 </shape>

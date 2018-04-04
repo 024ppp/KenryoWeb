@@ -4,4 +4,11 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="black">#000000</color>
+
+    <!--背景色-->
+    <color name="back_title">#FC427B</color>
+    <color name="back_item">#ecf0f1</color>
+    <!--文字色-->
+    <color name="text_title">#2d3436</color>
+    <color name="text_item">#2d3436</color>
 </resources>

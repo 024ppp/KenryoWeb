@@ -21,6 +21,7 @@ import com.example.administrator.kenryoweb.Model.Data.DataKenryo;
 import com.example.administrator.kenryoweb.R;
 import com.example.administrator.kenryoweb.View.MainActivity;
 
+
 /**
  * Created by Administrator on 2018/03/27.
  */
@@ -28,6 +29,7 @@ import com.example.administrator.kenryoweb.View.MainActivity;
 public class Util {
     private MainActivity activity;
     private TextView msg_text;
+    private SharedPreferences prefs;
     private String ip;
 
     //計量値定期取得タスクにて使用
@@ -40,7 +42,7 @@ public class Util {
         this.msg_text = activity.findViewById(R.id.msg_text);
 
         //接続先サーバのIPアドレス(URI)を取得
-        SharedPreferences prefs = activity.getSharedPreferences("ConnectionData", Context.MODE_PRIVATE);
+        prefs = activity.getSharedPreferences("ConnectionData", Context.MODE_PRIVATE);
         ip = "http://" + prefs.getString("ip", "");
     }
 
@@ -247,6 +249,24 @@ public class Util {
         if (handler != null) {
             handler.removeCallbacks(runnable);
             handler = null;
+        }
+    }
+
+    //缶区分に応じた風袋重量を返す
+    public int getContainerWeight(String kbn) {
+        switch (kbn) {
+            case "1":
+                return prefs.getInt("cw1", Constants.WEIGHT_KBN_1);
+            case "2":
+                return prefs.getInt("cw2", Constants.WEIGHT_KBN_2);
+            case "3":
+                return prefs.getInt("cw3", Constants.WEIGHT_KBN_3);
+            case "4":
+                return prefs.getInt("cw4", Constants.WEIGHT_KBN_4);
+            case "5":
+                return prefs.getInt("cw5", Constants.WEIGHT_KBN_5);
+            default:
+                return 0;
         }
     }
 

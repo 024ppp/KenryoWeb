@@ -60,7 +60,7 @@ public class GetMeasuringValueTask extends AbstractAsyncTask {
 
         //風袋重量を算出
         for (String kbn : dataKenryo.PC01_CANKBN) {
-            containerWeight += getContainerWeight(kbn);
+            containerWeight += util.getContainerWeight(kbn);
         }
 
         //風袋重量を引いた値を算出
@@ -74,23 +74,23 @@ public class GetMeasuringValueTask extends AbstractAsyncTask {
         return dataKenryo;
     }
 
-    //缶区分に応じた風袋重量を返す
-    private int getContainerWeight(String kbn) {
-        switch (kbn) {
-            case "1":
-                return Constants.WEIGHT_KBN_1;
-            case "2":
-                return Constants.WEIGHT_KBN_2;
-            case "3":
-                return Constants.WEIGHT_KBN_3;
-            case "4":
-                return Constants.WEIGHT_KBN_4;
-            case "5":
-                return Constants.WEIGHT_KBN_5;
-            default:
-                return 0;
-        }
-    }
+//    //缶区分に応じた風袋重量を返す
+//    private int getContainerWeight(String kbn) {
+//        switch (kbn) {
+//            case "1":
+//                return Constants.WEIGHT_KBN_1;
+//            case "2":
+//                return Constants.WEIGHT_KBN_2;
+//            case "3":
+//                return Constants.WEIGHT_KBN_3;
+//            case "4":
+//                return Constants.WEIGHT_KBN_4;
+//            case "5":
+//                return Constants.WEIGHT_KBN_5;
+//            default:
+//                return 0;
+//        }
+//    }
 
     @Override
     public void afterTimeoutProcess() {
