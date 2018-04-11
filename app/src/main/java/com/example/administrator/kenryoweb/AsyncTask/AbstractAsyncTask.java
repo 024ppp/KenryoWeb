@@ -29,7 +29,7 @@ public abstract class AbstractAsyncTask extends AsyncTask<String, String, String
     private String urlStr;
     private String requestMethod;
     private boolean shouldShowDialog;
-    ProgressDialog dialog;
+    private ProgressDialog dialog;
 
     public AbstractAsyncTask(MainActivity activity
                            , String urlStr

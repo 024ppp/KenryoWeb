@@ -33,7 +33,6 @@ public class Util {
     private String ip;
 
     //計量値定期取得タスクにて使用
-    private Util _util;
     private Handler handler;
     private Runnable runnable;
 
@@ -228,14 +227,14 @@ public class Util {
 
     //計量値定期取得を開始
     public void startGetMeasuringValueRegularly() {
-        _util = this;   //todo ええんかこれ
+        final Util util = this;
         this.handler = new Handler();
         this.runnable = new Runnable() {
             @Override
             public void run() {
                 //計量値取得タスク開始
                 String urlStr = createURI("MES");
-                GetMeasuringValueTask task = new GetMeasuringValueTask(activity, urlStr, "GET", _util);
+                GetMeasuringValueTask task = new GetMeasuringValueTask(activity, urlStr, "GET", util);
                 task.execute();
                 //定期実行の間隔を指定
                 handler.postDelayed(this, Constants.INTERVAL_MES);
